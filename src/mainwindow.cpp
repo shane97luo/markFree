@@ -3,12 +3,13 @@
 #include <QMenuBar>
 #include <QDebug>
 #include <QFileDialog>
-
+#include <QSizePolicy>
 #include "./moduleNet/myupdate.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
+
     this->resize(800,600);
     this->setMinimumSize(200,150);
 
@@ -19,6 +20,9 @@ MainWindow::MainWindow(QWidget *parent)
     workplace = new WorkplaceWidget() ;//工作区间
     sideMenuBar = new ToolMenuBar();//左侧菜单
 
+    workplace->setStyleSheet("background-color:lightYellow;");
+    sideMenuBar->setStyleSheet("background-color:lightYellow;");
+
     QHBoxLayout *hLayout = new QHBoxLayout;
     hLayout->addWidget(sideMenuBar);
     hLayout->addWidget(projectWidget);
@@ -26,8 +30,9 @@ MainWindow::MainWindow(QWidget *parent)
     mainWidget->setLayout(hLayout);
 
     setCentralWidget(mainWidget);
-    sideMenuBar->setFixedWidth(80);
+    sideMenuBar->setFixedWidth(90);
     projectWidget->setFixedWidth(180);
+    workplace->setMinimumWidth(600);
 
     initStatusBar();
 
@@ -43,6 +48,7 @@ MainWindow::~MainWindow()
 void MainWindow::initStatusBar()
 {
     mystatusBar = statusBar();//左侧菜单
+    mystatusBar->setStyleSheet("background-color:lightYellow;");
 
     QLabel *lbl= new QLabel("status:");
     QLabel *lbl1= new QLabel("lbl1");
@@ -78,18 +84,18 @@ void MainWindow::initToolBar()
     connect(openAct,SIGNAL(triggered()),this,SLOT(slotOpenFile()));
 
     QIcon dirOpenIcon1 = style()->standardIcon(QStyle::SP_DirOpenIcon);
-    QAction * openDirAct = new QAction(dirOpenIcon1 ,"打开文件夹", nullptr);
+    QAction * openDirAct = new QAction(dirOpenIcon1 ,QString::fromLocal8Bit("open from file"), nullptr);
     connect(openDirAct,SIGNAL(triggered()),this,SLOT(slotOpenDir()));
 
     QIcon dirOpenIcon2 = style()->standardIcon(QStyle::SP_DirOpenIcon);
-    QAction * openRecentAct = new QAction(dirOpenIcon2 ,"打开最近", nullptr);
+    QAction * openRecentAct = new QAction(dirOpenIcon2 ,"recently file", nullptr);
     connect(openRecentAct,SIGNAL(triggered()),this,SLOT(slotOpenRecent()));
 
     QIcon dirLinkIcon = style()->standardIcon(QStyle::SP_DirLinkIcon);
     QAction * saveAct = new QAction(dirLinkIcon,"保存", nullptr);
     connect(saveAct,SIGNAL(triggered()),this,SLOT(slotSaveFile()));
 
-    QAction * saveAsAct = new QAction("另存为", nullptr);
+    QAction * saveAsAct = new QAction("Save as", nullptr);
     connect(saveAsAct,SIGNAL(triggered()),this,SLOT(slotSaveAs()));
 
     QAction * saveAllAct = new QAction("全部保存", nullptr);
@@ -161,8 +167,8 @@ void MainWindow::initToolBar()
     helpsMenu = new QMenu("Help(&H)");
     //QMenu* helpMenu = new QMenu("帮助",nullptr);
     QAction* helpAct = new QAction("帮助",nullptr);
-    QAction* contactAct = new QAction("联系我",nullptr);
-    QAction* updateAct = new QAction("检查更新",nullptr);
+    QAction* contactAct = new QAction("contact me",nullptr);
+    QAction* updateAct = new QAction("check update",nullptr);
     connect(updateAct,SIGNAL(triggered()),this,SLOT(slotUpdate()));
 
     QAction* documentAct = new QAction("文档",nullptr);

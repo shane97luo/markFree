@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QPushButton>
+#include <QToolButton>
 #include <QVBoxLayout>
 
 class ToolMenuBar : public QWidget
@@ -13,9 +14,12 @@ public:
 
     void initMenu();
 private:
+
+    QPushButton *welcome;
     QPushButton *editMenu;
     QPushButton *paintMenu;
     QPushButton *helpMenu;
+
 
 signals:
 

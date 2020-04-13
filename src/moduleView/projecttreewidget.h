@@ -10,6 +10,14 @@
 #ifndef PROJECTTREEWIDGET_H
 #define PROJECTTREEWIDGET_H
 
+#include <QMouseEvent>
+#include <QDragMoveEvent>
+#include <QDragEnterEvent>
+#include <QDragLeaveEvent>
+#include <QMimeData>
+#include <QDrag>
+
+
 #include <QTreeWidget>
 #include <QFileSystemModel>
 #include <QFileIconProvider>
@@ -31,9 +39,22 @@ private:
     QTreeWidget * proTreeWidget;
     QComboBox * viewComBox;//视图选择
 
+    qint8 indexView;//当前视图
+
+protected:
+    void dragEnterEvent(QDragEnterEvent *event) override;
+//    void dragMoveEvent(QDragMoveEvent *event) override;
+//    void dropEvent(QDropEvent *event) override;
+//    void mousePressEvent(QMouseEvent *event) override;
+
+
+
 signals:
 
 public slots:
+
+    void changeView(qint8 view);
+    void slotItemPressed(QTreeWidgetItem *item, int column);
 };
 
 #endif // PROJECTTREEWIDGET_H

@@ -8,9 +8,14 @@
 #include <QMimeData>
 #include <QDrag>
 
+
+#include <QTreeWidget>
+#include <QTreeWidgetItem>
+
 #include <QWidget>
 #include <QTextEdit>
 #include <QLabel>
+#include <QDebug>
 
 #include <QPainter>
 #include <QPen>
@@ -34,10 +39,9 @@ private:
 
 protected:
     void dragEnterEvent(QDragEnterEvent *event) override;
-    void dragMoveEvent(QDragMoveEvent *event) override;
+//    void dragMoveEvent(QDragMoveEvent *event) override;
     void dropEvent(QDropEvent *event) override;
-    void mousePressEvent(QMouseEvent *event) override;
-
+//    void mousePressEvent(QMouseEvent *event) override;
 
 signals:
 

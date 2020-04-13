@@ -12,7 +12,8 @@
 
 #include "mdiwidget.h"
 #include "./moduleView/projecttreewidget.h"
-#include "./moduleView/workplacewidget.h"
+//#include "./moduleView/workplacewidget.h"
+#include "./moduleView/workplacewidget_drag.h"
 #include "./moduleView/toolmenubar.h"
 
 class MainWindow : public QMainWindow
@@ -25,6 +26,7 @@ public:
 
     void initToolBar();
     void initStatusBar();
+
 
 private:
     WorkplaceWidget * workplace;//工作区间
